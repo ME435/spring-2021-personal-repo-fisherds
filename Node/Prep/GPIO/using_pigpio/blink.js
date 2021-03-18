@@ -22,7 +22,7 @@ function main() {
 }
 
 function runBlink() {
-    console.log("Setup pin 14 as an output");
+    console.log("Setup pin 14 as an output. Crash on my Pi 400");
     const led = new Gpio(14, {mode: Gpio.OUTPUT});
 
     for (let k = 0; k < 3; k++) {
