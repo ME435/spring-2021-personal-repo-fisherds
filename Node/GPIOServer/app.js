@@ -10,4 +10,18 @@ app.get("/hello", (req, res) => {
     });
 });
 
+app.get("/api/ledon", (req, res) => {
+    console.log("TODO: Turn the LED ON");
+    res.json({
+        status: "ok"
+    });
+});
+
+app.get("/api/ledoff", (req, res) => {
+    console.log("TODO: Turn the LED OFF");
+    res.json({
+        status: "ok"
+    });
+});
+
 app.listen(3000);

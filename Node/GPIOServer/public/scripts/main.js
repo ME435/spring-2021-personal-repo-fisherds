@@ -15,9 +15,11 @@ rhit.ViewController = class {
 
 	handleLedOn() {
 		console.log("You clicked LED ON");
+		fetch('api/ledon');
 	}
 	handleLedOff() {
 		console.log("You clicked LED OFF");	
+		fetch('api/ledoff');
 	}
 }
 
