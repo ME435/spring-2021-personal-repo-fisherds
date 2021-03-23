@@ -23,6 +23,10 @@ rhit.ViewController = class {
 		document.querySelector("#greenLedOffButton").onclick = (event) => {
 			this.handleLedOff("g");
 		};
+
+		document.querySelector("#readButton").onclick = (event) => {
+			this.handleRead();
+		};
 	}
 	handleLedOn(color) {
 		console.log("You clicked LED ON for " + color);
@@ -31,6 +35,25 @@ rhit.ViewController = class {
 	handleLedOff(color) {
 		console.log("You clicked LED OFF for " + color);	
 		fetch('api/ledoff/' + color);
+	}
+	async handleRead() {
+		console.log("Fetch the pushbutton state, then update the UI");
+		// fetch("api/read").then((response) => {
+		// 	console.log(response);
+		// });
+		// console.log("This log happen BEFORE the fetch return.");
+
+		const response = await fetch("api/read");
+		const data = await response.json();
+		const isHigh = data["isHigh"];
+		
+		// if (isHigh) {
+		// 	document.querySelector("#readOutput").innerHTML = "The pushbutton is HIGH";
+		// } else {
+		// 	document.querySelector("#readOutput").innerHTML = "The pushbutton is Low";
+		// }
+		document.querySelector("#readOutput").innerHTML = isHigh ? "The pushbutton is HIGH" : "The pushbutton is LOW";
+
 	}
 }
 
