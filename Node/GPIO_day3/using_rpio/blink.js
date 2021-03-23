@@ -8,7 +8,7 @@ function msleep(n) {
 
 
 function main() {
-    console.log("Ready");
+    console.log("Ready to use rpio");
     // TODO: Set GPIO14 as an output
 
     for (let k = 0; k < 3; k++) {
