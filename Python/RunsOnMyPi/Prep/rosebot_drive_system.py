@@ -233,10 +233,6 @@ class DriveSystem(object):
         time.sleep(degrees)  # Requires testing to make a formula
         self.stop()
 
-    def destroy(self):
-        self.stop()
-        GPIO.cleanup()             # Release resource
-
 
 if __name__ == '__main__':
     drive = DriveSystem()
