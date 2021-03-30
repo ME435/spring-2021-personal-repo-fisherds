@@ -27,7 +27,6 @@ class Motor:
 
 class DriveSystem:
   def __init__(self):
-    print("You just made a Drive system!")
     Motor_A_EN = 4
     Motor_B_EN = 17
     Motor_A_Pin1 = 14
@@ -43,7 +42,8 @@ class DriveSystem:
     self.right_motor.turn_on(right_wheel_speed)
   
   def stop(self):
-    pass
+    self.left_motor.turn_off()
+    self.right_motor.turn_off()
 
   def go_straight_for_seconds(self, seconds, speed=50):
     pass
