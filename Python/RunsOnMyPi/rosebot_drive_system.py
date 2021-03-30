@@ -25,30 +25,54 @@ class Motor:
     self.pwm_output.value = 0
 
 
+class DriveSystem:
+  def __init__(self):
+    print("You just made a Drive system!")
+    Motor_A_EN = 4
+    Motor_B_EN = 17
+    Motor_A_Pin1 = 14
+    Motor_A_Pin2 = 15
+    Motor_B_Pin1 = 27
+    Motor_B_Pin2 = 18
+    self.left_motor = Motor(Motor_B_Pin1, Motor_B_Pin2, Motor_B_EN)
+    self.right_motor = Motor(Motor_A_Pin2, Motor_A_Pin1, Motor_A_EN)
 
+  def go(self, left_wheel_speed, right_wheel_speed):
+    """ Sets the left and right motor speed -100 to 100 """
+    self.left_motor.turn_on(left_wheel_speed)
+    self.right_motor.turn_on(right_wheel_speed)
+  
+  def stop(self):
+    pass
+
+  def go_straight_for_seconds(self, seconds, speed=50):
+    pass
+
+  def go_straight_for_inches(self, inches, speed=50):
+    pass
+
+  def spin_in_place_for_seconds(self, seconds, speed=50):
+    pass
+
+  def spin_in_place_for_degrees(self, degrees, speed=50):
+    pass
+
+  def turn_for_seconds(self, seconds, speed):
+    pass
+
+  def turn_for_degrees(self, degrees, speed):
+    pass
 
 
 
 
 # Testing / for development
 if __name__ == "__main__":
-  Motor_A_EN = 4
-  Motor_B_EN = 17
-
-  Motor_A_Pin1 = 14
-  Motor_A_Pin2 = 15
-  Motor_B_Pin1 = 27
-  Motor_B_Pin2 = 18
-  my_right_motor = Motor(Motor_A_Pin2, Motor_A_Pin1, Motor_A_EN)
-  my_left_motor = Motor(Motor_B_Pin1, Motor_B_Pin2, Motor_B_EN)
-
-
-  my_left_motor.turn_on(-30)
+  drive_system = DriveSystem()
+  drive_system.go(-50, -50)
   time.sleep(2)
-  my_left_motor.turn_off()
-  
-  
-
-
+  drive_system.go(100, -100)
+  time.sleep(2)
+  drive_system.go(0, 0)
 
   print("Goodbye")
