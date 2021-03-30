@@ -8,7 +8,7 @@ import gpiozero as gz
 
 
 ###############################################################################
-#    DriveSystem
+#    Motor
 ###############################################################################
 class Motor:
     """
@@ -25,9 +25,9 @@ class Motor:
         :type pin_1:  int
         :type pin_2: int
         """
-        self.motor_dir_1 = gz.DigitalOutputDevice(pin_1)
-        self.motor_dir_2 = gz.DigitalOutputDevice(pin_2)
-        self.pwm = gz.PWMOutputDevice(pin_enable)
+        self.digital_output_1 = gz.DigitalOutputDevice(pin_1)
+        self.digital_output_2 = gz.DigitalOutputDevice(pin_2)
+        self.pwm_output = gz.PWMOutputDevice(pin_enable)
         self.turn_off()
 
     def turn_on(self, speed):
@@ -42,14 +42,14 @@ class Motor:
             speed = 100
         if speed > 0:
             # Forwards
-            self.motor_dir_1.on()
-            self.motor_dir_2.off()
-            self.pwm.value = speed/100.0
+            self.digital_output_1.on()
+            self.digital_output_2.off()
+            self.pwm_output.value = speed/100.0
         elif speed < 0:
             # Backwards
-            self.motor_dir_1.off()
-            self.motor_dir_2.on()
-            self.pwm.value = -speed/100.0
+            self.digital_output_1.off()
+            self.digital_output_2.on()
+            self.pwm_output.value = -speed/100.0
         else:
             self.turn_off()
 
@@ -57,15 +57,15 @@ class Motor:
         """
         Stops the current motor
         """
-        self.motor_dir_1.off()
-        self.motor_dir_2.off()
-        self.pwm.off()
+        self.digital_output_1.off()
+        self.digital_output_2.off()
+        self.pwm_output.off()
 
 
 ###############################################################################
 #    DriveSystem
 ###############################################################################
-class DriveSystem(object):
+class DriveSystem:
     """
     Controls the robot's motion via methods that include:
       go                         stop
