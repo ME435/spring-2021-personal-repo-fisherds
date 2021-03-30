@@ -46,7 +46,9 @@ class DriveSystem:
     self.right_motor.turn_off()
 
   def go_straight_for_seconds(self, seconds, speed=50):
-    pass
+    self.go(speed, speed)
+    time.sleep(seconds)
+    self.stop()
 
   def go_straight_for_inches(self, inches, speed=50):
     pass
