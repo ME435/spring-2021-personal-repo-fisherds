@@ -51,7 +51,15 @@ class DriveSystem:
     self.stop()
 
   def go_straight_for_inches(self, inches, speed=50):
-    pass
+    self.go(speed, speed)
+    if speed < 0:
+      speed = -speed
+    if inches < 0:
+      inches = -inches
+    speed_inches_per_second = 0.2 * speed + 2.5
+    seconds = inches / speed_inches_per_second
+    time.sleep(seconds)
+    self.stop()
 
   def spin_in_place_for_seconds(self, seconds, speed=50):
     pass
