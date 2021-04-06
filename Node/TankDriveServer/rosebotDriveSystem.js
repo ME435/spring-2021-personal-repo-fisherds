@@ -45,6 +45,7 @@ function msleep(n) {
 function sleep(n) {
   msleep(n*1000);
 }
+
 const Motor_A_EN = 4;
 const Motor_B_EN = 17; // No hardware PWM!!!
 const Motor_A_Pin1 = 14;
@@ -53,16 +54,3 @@ const Motor_B_Pin1 = 27;
 const Motor_B_Pin2 = 18;
 const leftMotor = new Motor(Motor_B_Pin1, Motor_B_Pin2, Motor_B_EN);
 const rightMotor = new Motor(Motor_A_Pin2, Motor_A_Pin1, Motor_A_EN);
-
-console.log("left on 50");
-leftMotor.turnOn(50);
-sleep(3);
-
-console.log("left on off");
-leftMotor.turnOff();
-sleep(3);
-
-console.log("left on -50");
-leftMotor.turnOn(-50);
-sleep(3);
-leftMotor.turnOff();
