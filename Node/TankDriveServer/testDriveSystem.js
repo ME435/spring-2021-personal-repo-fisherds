@@ -1,23 +1,14 @@
 const prompt = require('prompt-sync')({sigint: true});
-// # -------------------------------------------------------------------------
-// # TODO: import rosebot
-//         const rosebot = require("./rosebot");
-// # -------------------------------------------------------------------------
-
-function msleep(n) {
-  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n);
-}
-function sleep(n) {
-  msleep(n*1000);
-}
+const rosebot = require("./rosebot");
 
 function main() {
   console.log('--------------------------------------------------')
   console.log('Testing the  DRIVE SYSTEM  of a robot')
   console.log('--------------------------------------------------')
     // # -------------------------------------------------------------------------
-    // # TODO: Create a robot.
+    // # Done: Create a robot.
     // # -------------------------------------------------------------------------
+    robot = new rosebot.RoseBot();
 
   while (true) {
     console.log("Wheel speeds should be integers between -100 and 100.")
@@ -30,11 +21,14 @@ function main() {
     }
     prompt('Press the ENTER key when ready for the robot to start moving.');
     // # -------------------------------------------------------------------------
-    // # TODO: Call the  go  method of the   driveSystem   of the robot,
+    // # Done: Call the  go  method of the   driveSystem   of the robot,
     // #   sending it the two wheel speeds.  Keep going (sleep) for 3 seconds.
     // #   Then call the  stop  method of the   driveSystem   of the robot.
     // # -------------------------------------------------------------------------
 
+    robot.driveSystem.go(leftWheelSpeed, rightWheelSpeed);
+    rosebot.sleep(3);
+    robot.driveSystem.stop();
   }
 }
 

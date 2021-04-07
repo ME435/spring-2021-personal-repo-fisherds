@@ -61,25 +61,6 @@ class DriveSystem {
   }
 }
 
-
-// Test code area:
-function msleep(n) {
-  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n);
+module.exports = {
+  DriveSystem
 }
-function sleep(n) {
-  msleep(n*1000);
-}
-
-const driveSystem = new DriveSystem();
-driveSystem.go(60, 60);
-sleep(2);
-driveSystem.stop();
-sleep(1);
-driveSystem.go(-60, -60);
-sleep(2);
-driveSystem.stop();
-sleep(1);
-driveSystem.go(-60, 60);
-sleep(2);
-driveSystem.stop();
-
