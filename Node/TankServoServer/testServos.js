@@ -13,7 +13,6 @@ function main() {
   }, 50);
 }
 
-
 function run_servo_test() {
   console.log("Type in a servo number.  Options:")
   console.log("11 --> Camera Tilt");
