@@ -1,4 +1,5 @@
 const rosebotDriveSystem = require("./rosebotDriveSystem");
+const rosebotServo = require("./rosebotServos");
 
 class RoseBot {
   constructor() {
@@ -6,16 +7,20 @@ class RoseBot {
     this.driveSystem = new rosebotDriveSystem.DriveSystem();
 
     // Servos
-    // this.armServos = 
-    // this.gripperServo = 
-    // this.cameraServo = 
+    this.initializeServos();
 
     // Sensors
     // this.ultrasonic = 
     // this.irSensor = 
 
     // Camera
+  }
 
+  async initializeServos() {
+    const pca9685Driver = await rosebotServo.createPca9685Driver();
+    this.armServos = rosebotServo.ArmServos(pca9685Driver);
+    this.gripperServo = rosebotServo.GripperServo(pca9685Driver);
+    this.cameraServo = rosebotServo.CameraServo(pca9685Driver);
   }
 }
 
