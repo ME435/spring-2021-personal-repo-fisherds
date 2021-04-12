@@ -14,13 +14,14 @@ class RoseBot {
     // this.irSensor = 
 
     // Camera
+    
   }
 
   async initializeServos() {
     const pca9685Driver = await rosebotServo.createPca9685Driver();
-    this.armServos = rosebotServo.ArmServos(pca9685Driver);
-    this.gripperServo = rosebotServo.GripperServo(pca9685Driver);
-    this.cameraServo = rosebotServo.CameraServo(pca9685Driver);
+    this.armServos = new rosebotServo.ArmServos(pca9685Driver);
+    this.gripperServo = new rosebotServo.GripperServo(pca9685Driver);
+    this.cameraServo = new rosebotServo.CameraServo(pca9685Driver);
   }
 }
 
