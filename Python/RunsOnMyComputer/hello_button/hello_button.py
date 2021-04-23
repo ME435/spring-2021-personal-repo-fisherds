@@ -23,7 +23,7 @@ class HelloButtonApp(MDApp):
 
     def build(self):
         # Done in the magic name .kv file  HelloButtonApp --> helloButton.kv
-        # Window.size = (400, 300)
+        Window.size = (400, 300)
         return
 
 
