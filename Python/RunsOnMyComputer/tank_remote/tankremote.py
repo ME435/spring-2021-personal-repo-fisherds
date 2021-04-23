@@ -5,11 +5,8 @@ import mqtt_helper
 
 class TankRemoteApp(MDApp):
 
-    counter_text = StringProperty("Counter = 0")
-
     def __init__(self, **kwargs):
         super(TankRemoteApp, self).__init__(**kwargs)
-        self.counter = 0
 
         self.mqtt_client = mqtt_helper.MqttClient()
         self.mqtt_client.callback = self.mqtt_callback
@@ -20,25 +17,13 @@ class TankRemoteApp(MDApp):
         print("MQTT message_type", message_type)
         print("MQTT payload", payload)
 
-        if message_type == "set":
-            self.counter = payload
-        elif message_type == "change":
-            self.counter += payload
-            
         self.update_view()
 
-    def set_counter(self, value):
-        self.mqtt_client.send_message("set", value)
-
-    def change_counter(self, value):
-        self.mqtt_client.send_message("change", value)
-
     def update_view(self):
-        self.counter_text = "Counter = {}".format(self.counter)
+        print("TODO: Update the view as needed")
 
     def build(self):
-        # Done in the magic name .kv file  HelloButtonApp --> helloButton.kv
-        Window.size = (400, 300)
+        Window.size = (400, 600)
         return
 
 

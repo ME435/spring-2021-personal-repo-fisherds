@@ -2,28 +2,7 @@ MDBoxLayout:
     orientation: "vertical"
 
     MDToolbar:
-        title: "Hello Button"
+        title: "Tank Remote"
 
-    MDBoxLayout:
-        orientation: "horizontal"
-        adaptive_width: True
-        pos_hint: {'center_x': 0.5}
-        spacing: 20
-
-        MDRectangleFlatButton:
-            text: "Decrement"
-            on_press: app.change_counter(-1)
-
-        MDRectangleFlatButton:
-            text: "Reset"
-            on_press: app.set_counter(0)
-
-        MDRectangleFlatButton:
-            text: "Increment"
-            on_press: app.change_counter(1)
-
-    MDLabel:
-        text: app.counter_text
-        halign: "center"
 
     Widget
