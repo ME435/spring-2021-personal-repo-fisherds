@@ -7,7 +7,7 @@ import requests
 
 api_url = "http://fisherds-tank.wlan.rose-hulman.edu:3000/api/"
 
-class TankRemote(App):
+class TankRemoteApp(App):
   def send_stop(self, event):
     print("Sent stop")
     requests.get(api_url + "motor/stop")
@@ -46,4 +46,4 @@ class TankRemote(App):
 
 
 if __name__ == '__main__':
-  TankRemote().run()
+  TankRemoteApp().run()
