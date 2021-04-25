@@ -44,8 +44,6 @@ MDBoxLayout:
             icon: 'wiper'
 
             MDBoxLayout:
-                # adaptive_height: True
-                # pos_hint: {"center_y": 0.5}
                 orientation: "vertical"
                 padding: 30
 
@@ -105,6 +103,22 @@ MDBoxLayout:
             text: 'Sensors'
             icon: 'gauge'
 
-            MDLabel:
-                text: 'JS'
-                halign: 'center'
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: 30
+
+                MDLabel:
+                    text: 'Ultrasonic'
+                    halign: 'left'
+
+                MDLabel:
+                    text: app.ultrasonic_text
+                    halign: 'center'
+
+                MDLabel:
+                    text: 'Line Sensor'
+                    halign: 'left'
+
+                MDLabel:
+                    text: app.line_sensor_text
+                    halign: 'center'

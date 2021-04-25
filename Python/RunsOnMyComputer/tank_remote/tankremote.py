@@ -5,6 +5,9 @@ import mqtt_helper
 
 class TankRemoteApp(MDApp):
 
+    ultrasonic_text = StringProperty("???")
+    line_sensor_text = StringProperty("???")
+
     def __init__(self, **kwargs):
         super(TankRemoteApp, self).__init__(**kwargs)
 
@@ -16,6 +19,11 @@ class TankRemoteApp(MDApp):
     def mqtt_callback(self, message_type, payload):
         print("MQTT message_type", message_type)
         print("MQTT payload", payload)
+
+        if message_type == "sensor/ultrasonic":
+            self.ultrasonic_text = "Value = {}".format(payload)
+        if message_type == "sensor/line_sensor":
+            self.line_sensor_text = "Value = {}".format(payload)
 
 
     def build(self):
