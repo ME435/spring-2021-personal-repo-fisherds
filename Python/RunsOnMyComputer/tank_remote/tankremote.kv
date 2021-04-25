@@ -4,5 +4,56 @@ MDBoxLayout:
     MDToolbar:
         title: "Tank Remote"
 
+    MDBottomNavigation:
+        panel_color: .2, .2, .2, 1
 
-    Widget
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Drive'
+            icon: 'truck'
+
+            MDFloatLayout:
+
+                MDFloatingActionButton:
+                    icon: "arrow-up"
+                    pos_hint: {'center_y': 0.7, 'center_x': 0.5}
+                    on_press: app.mqtt_client.send_message("motor/go", [100, 100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+
+                MDFloatingActionButton:
+                    icon: "arrow-down"
+                    pos_hint: {'center_y': 0.3, 'center_x': 0.5}
+                    on_press: app.mqtt_client.send_message("motor/go", [-100, -100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+                    
+
+                MDFloatingActionButton:
+                    icon: "arrow-left"
+                    pos_hint: {'center_y': 0.5, 'center_x': 0.3}
+                    on_press: app.mqtt_client.send_message("motor/go", [-100, 100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+
+                MDFloatingActionButton:
+                    icon: "arrow-right"
+                    pos_hint: {'center_y': 0.5, 'center_x': 0.7}
+                    on_press: app.mqtt_client.send_message("motor/go", [100, -100])
+                    on_release: app.mqtt_client.send_message("motor/stop")
+
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Servos'
+            icon: 'wiper'
+
+            MDLabel:
+                text: 'I programming of C++'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Sensors'
+            icon: 'gauge'
+
+            MDLabel:
+                text: 'JS'
+                halign: 'center'
