@@ -13,7 +13,7 @@ class TankRemoteApp(MDApp):
 
         self.mqtt_client = mqtt_helper.MqttClient()
         self.mqtt_client.callback = self.mqtt_callback
-        self.mqtt_client.connect(subscription_topic_name="fisherds/messagesForPi", # TODO: Put this back to Computer! 
+        self.mqtt_client.connect(subscription_topic_name="fisherds/messagesForComputer",
                                     publish_topic_name="fisherds/messagesForPi")
 
     def mqtt_callback(self, message_type, payload):
