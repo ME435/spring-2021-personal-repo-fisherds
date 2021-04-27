@@ -2,6 +2,10 @@ var rhit = rhit || {};
 
 rhit.TankController = class {
 	constructor() {
+
+		this.ref = firebase.firestore().collection("Commands").doc("command");
+
+
 		const buttons = document.querySelectorAll(".driveButton");
 		const sliderInput = document.querySelector("#baseSpeed");
 
@@ -60,10 +64,20 @@ rhit.TankController = class {
 
 	sendDriveCommand(leftWheelSpeed, rightWheelSpeed) {
 		console.log(`Sent these values to the server: ${leftWheelSpeed} ${rightWheelSpeed}`);
-		fetch(`api/motor/go/${leftWheelSpeed}/${rightWheelSpeed}`);
+		// fetch(`api/motor/go/${leftWheelSpeed}/${rightWheelSpeed}`);
+
+		this.ref.set({
+			type: "motor/go",
+			payload: `[${leftWheelSpeed}, ${rightWheelSpeed}]`
+		});
+
 	}
 	sendStop() {
-		fetch(`api/motor/stop`);
+		// fetch(`api/motor/stop`);
+		console.log("Motor Stop");
+		this.ref.set({
+			type: "motor/stop"
+		});
 	}
 }
 
