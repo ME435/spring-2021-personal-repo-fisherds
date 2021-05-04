@@ -12,18 +12,21 @@ class Servos:
     self.kit = adafruit_servokit.ServoKit(channels=16)
   
   def set_camera_angle(self, angle):
-    servo_angle = interp(angle,[0, 45], [115, 30]) # maps 0->45 to 115->30
-    self.kit.servo[PIN_CAMERA_SERVO].angle = servo_angle
+    servo_angle = interp(angle,[0, 45], [30, 0]) # maps 0->45 to 30->0 (flip and scale)
+    self.kit.servo[Servos.PIN_CAMERA_SERVO].angle = servo_angle
   
   def set_joint_angle(self, joint_number, angle):
+    pin = joint_number + Servos.PIN_CAMERA_SERVO  # 12, 13, or 14
     if joint_number == 1:
-      pin = PIN_JOINT_1
-      servo_angle = interp(angle,[0, 45], [115, 30]) # maps 0->45 to 115->30
-    pin = joint_number + PIN_CAMERA_SERVO  # 12, 13, or 14
-    self.kit.servo[pin].angle = angle + 90
+      servo_angle = interp(angle, [-90, 90], [180, 0])  # flip
+    else:
+      servo_angle = interp(angle, [-90, 90], [0, 180])  # add 90
+    self.kit.servo[pin].angle = servo_angle
   
   def set_gripper_inches(self, inches):
-    self.kit.servo[PIN_GRIPPER_SERVO].angle = -23.333 * inches + 126.666
+    servo_angle = interp(inches, [0, 2], [105, 0])
+    print("Request:", inches, " Result: ", servo_angle)
+    self.kit.servo[Servos.PIN_GRIPPER_SERVO].angle = servo_angle
 
 
 
