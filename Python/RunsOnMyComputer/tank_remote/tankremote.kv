@@ -122,3 +122,22 @@ MDBoxLayout:
                 MDLabel:
                     text: app.line_sensor_text
                     halign: 'center'
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+
+                    MDRoundFlatIconButton:
+                        icon: "gauge"
+                        text_color: 1, 0, 0, 1
+                        line_color: 1, 0, 0, 1
+                        text: "Stream off"
+                        on_press: app.mqtt_client.send_message("sensors/off")
+
+                    
+                    Widget:
+                    
+                    MDRoundFlatIconButton:
+                        icon: "gauge"
+                        text: "Stream on"
+                        on_press: app.mqtt_client.send_message("sensors/on")
+
