@@ -4,7 +4,7 @@ import firebase_admin
 from firebase_admin import credentials
 import firebase_photos  # Photos collection
 import firebase_settings_page  # Settings Page documents
-# TODO: Import picamera
+from picamera import PiCamera
 import rosebot
 import time
 
@@ -14,7 +14,10 @@ class PiTank():
         self.settings_page_manager = settings_page_manager
         self.robot = rosebot.RoseBot()
 
-        # Camera setup (CONSIDER: Make this part of the RoseBot class)
+        # TODO: Camera setup (CONSIDER: Make this part of the RoseBot class)
+        self.camera = PiCamera()
+        self.camera.resolution = (1024, 768)
+
         
         self.settings_page_manager.add_command_listener(self.handle_command)
         self.settings_page_manager.add_feedback_stream_listener()  # Interestingly no callback is needed
@@ -30,14 +33,13 @@ class PiTank():
 
     def take_photo(self):
         filename = file_utils.get_filename()
-        
-        # TODO: Write this method
-
+        self.camera.capture(filename)
+        self.photos_manager.add_photo(filename)
 
 if __name__ == '__main__':
     print("Ready")
     # Initialize Firebase
-    my_project_id = "your_project_id"
+    my_project_id = "fisherds-securitycamera"
     # cred = firebase_admin.credentials.Certificate('serviceAccountKey.json')  # Works fine, but has a dependency on where the file is run from.
     cred = credentials.Certificate(f'{file_utils.get_directory()}/serviceAccountKey.json')
     firebase_admin.initialize_app(cred, {"storageBucket": f"{my_project_id}.appspot.com"})
@@ -67,3 +69,4 @@ if __name__ == '__main__':
                 if elapsed_security_photo_time > settings_page_manager.time_threshold:
                     print(f"The Security System criteria have been met.  Taking a picture!")
                     pi_tank.take_photo()
+                    last_security_photo_time = time.time()
