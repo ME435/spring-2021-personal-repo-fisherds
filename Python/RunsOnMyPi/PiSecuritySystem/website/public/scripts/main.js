@@ -129,7 +129,7 @@ rh.SettingsPageController = class {
 	sendSettingThresholds() {
 		const distanceThresholdCm = $("#distanceThresholdCmInput").val();
 		const coolDownTimeS = $("#coolDownTimeSInput").val();
-		rh.fbSettingsPageDocumentManager.updateThresholdSettings(distanceThresholdCm, coolDownTimeS);
+		rh.fbSettingsPageDocumentManager.updateThresholdSettings(parseInt(distanceThresholdCm), parseInt(coolDownTimeS));
 	}
 	
 	updateLatestPhoto() {
